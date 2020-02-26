@@ -3,20 +3,20 @@ const todos = require('./todos');
 
 run();
 
-async function run () {
+async function run() {
 
-try {
-    await client.connect();
+    try {
+        await client.connect();
 
-    await Promise.all(
-        todos.map(todo => {
-            return client.query(`
+        await Promise.all(
+            todos.map(todo => {
+                return client.query(`
             INSERT INTO todos (taks, complete)
             VALUES ($1, $2);
             `,
-            [todo.taks, todo.complete]);
-        })
-    );
+                [todo.taks, todo.complete]);
+            })
+        );
     }
     catch (err) {
         console.log(err);
