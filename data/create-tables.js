@@ -1,4 +1,4 @@
-const client = require('../lib/client');
+const client = require ('../lib/client');
 
 // async/await needs to run in a function
 run();
