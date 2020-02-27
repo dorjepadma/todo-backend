@@ -39,10 +39,10 @@ app.post('/api/todos', async(req, res) => {
         // const query = `insert into todos (task, complete) values ('${req.body.task}', false) returning *;
         // `;
         const result = await client.query(`
-            insert into todos (task, complete) values ('${req.body.task}', false)
+            insert into todos (task, complete, user_id) values ($1, false, $2)
             returning *;
         `,
-        []);
+        [req.body.task, req.userId]);
         res.json(result.rows[0]);
     }
     catch (err) {
